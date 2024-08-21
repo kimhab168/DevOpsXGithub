@@ -80,10 +80,3 @@ jobs:
 
       - name: Deploy to AWS with SST
         run: npx sst deploy --stage prod
-
-      - name: Deploy Storybook
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: storybook-static
