@@ -22,34 +22,31 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      # - name: Run storybook
-      #   run: yarn storybook
-
       - name: Run tests with coverage
         run: yarn test-storybook --coverage
 
-      # - name: Check coverage threshold
-      #   run: |
-      #     COVERAGE=$(grep -o '"statements": [0-9.]*' ./coverage/coverage-summary.json | awk '{print $2}')
-      #     if (( $(echo "$COVERAGE < 50.0" |bc -l) )); then
-      #       echo "Test coverage ($COVERAGE%) is below the required threshold of 50%."
-      #       exit 1
-      #     else
-      #       echo "Test coverage ($COVERAGE%) meets the required threshold."
-      #     fi
+      - name: Check coverage threshold
+        run: |
+          COVERAGE=$(grep -o '"statements": [0-9.]*' ./coverage/coverage-summary.json | awk '{print $2}')
+          if (( $(echo "$COVERAGE < 50.0" |bc -l) )); then
+            echo "Test coverage ($COVERAGE%) is below the required threshold of 50%."
+            exit 1
+          else
+            echo "Test coverage ($COVERAGE%) meets the required threshold."
+          fi
 
-      # - name: Upload coverage to Codecov
-      #   uses: codecov/codecov-action@v4
-      #   with:
-      #     token: ${{ secrets.CODECOV_TOKEN }}
-      #     files: ./coverage/lcov.info
-      #     flags: unittests
-      #     name: codecov-umbrella
-      #     fail_ci_if_error: true
-      #     verbose: true
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/lcov.info
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: true
+          verbose: true
 
-      # - name: Build Storybook
-      #   run: yarn storybook:build
+      - name: Build Storybook
+        run: yarn storybook:build
 
   deploy:
     runs-on: ubuntu-latest
