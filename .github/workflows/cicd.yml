@@ -60,9 +60,6 @@ jobs:
         run: kill $(lsof -t -i:6006)
         # This command stops the Storybook process
 
-      - name: Build Storybook
-        run: yarn storybook:build
-
   deploy:
     runs-on: ubuntu-latest
     needs: build
