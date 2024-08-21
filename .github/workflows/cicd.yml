@@ -22,11 +22,11 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Run storybook
-        run: yarn storybook
+      # - name: Run storybook
+      #   run: yarn storybook
 
       - name: Run tests with coverage
-        run: yarn test --coverage
+        run: yarn test-storybook --coverage
 
       # - name: Check coverage threshold
       #   run: |
