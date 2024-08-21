@@ -22,6 +22,10 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Install Playwright browsers
+        run: yarn playwright install
+        # This installs the required Playwright browsers
+
       - name: Start Storybook
         run: yarn storybook --ci --port 6006 &
         # This command starts Storybook in the background
