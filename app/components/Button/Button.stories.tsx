@@ -25,3 +25,9 @@ export const Default: Story = {
     label: "Default",
   },
 };
+export const MergeTest: Story = {
+  args: {
+    size: "S",
+    label: "Default",
+  },
+};
